@@ -3,8 +3,17 @@ package SelectionPackage;
 import javax.swing.*;
 import java.util.*;
 
+/**
+ * The MainWhell class serves as the entry point for the Selection application.
+ * It manages the initialization and execution of the main program logic
+ * <p>This class demonstrates core functionalities, including wheel selection
+ *  and user interaction processing.</p>
+ */
 public class MainWheel {
-	
+	/**
+	 * The main method is the starting point of the SelectionWheel application
+	 * It orchestrates the setup, execution, and display of the selected wheel.
+	 */
 	public static void main(String[] args) throws Exception {
 		
 		int width = 1000, height = 1000;
@@ -66,9 +75,10 @@ public class MainWheel {
 		lblsp.setText(Double.toString(wheel.getSpinSpeed()));
 		
 		//wheel.setShape(Wheel.Shape.UMBRELLA);
+		// This line sets the Shape of wheel object to "UMBRELLA"
 		
 		while(true) {
-			// wait for action
+			// wait for action to start spinning
 			while(true)
 			{
 				lblsel.setText(wheel.getSelectedString());
@@ -81,7 +91,7 @@ public class MainWheel {
 				if(wheel.isSpinning())
 					break;
 			}
-			// while spinning
+			// Update labels while the wheel is spinning
 			while(wheel.isSpinning())
 			{
 				lblsel.setText(wheel.getSelectedString());
@@ -94,7 +104,7 @@ public class MainWheel {
 				}
 			}
 			lblsp.setText(Double.toString(wheel.getSpinSpeed()));
-			// show selection
+			// shows the final selection in a dialog box
 			JOptionPane.showMessageDialog(frame, "Selection: " + wheel.getSelectedString());
 		}
 	}
