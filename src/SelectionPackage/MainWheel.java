@@ -21,9 +21,7 @@ public class MainWheel {
 		JFrame frame = new JFrame();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		//this line contains the method which has the array with movie name
-		ArrayList<String> list = initListOfMovies();
-
+		ArrayList<String> list = ContentReader.importListOfItems();
 		SelectionWheel wheel = new SelectionWheel(list);
 		wheel.hasBorders(true);
 		wheel.setBounds(10, 10, 700, 700);
@@ -90,28 +88,5 @@ public class MainWheel {
 		}
 	}
 
-	private static ArrayList<String> initListOfMovies() {
-		ArrayList<String> list = new ArrayList<String>();
-		list.add("Avatar");
-		list.add("The Lord of the Rings: The Return of the King");
-		list.add("Pirates of the Caribbean: Dead Man's Chest");
-		list.add("The Dark Knight");
-		list.add("Harry Potter and the Philosopher's Stone");
-		list.add("Pirates of the Caribbean: At World's End");
-		list.add("Harry Potter and the Order of the Phoenix");
-		list.add("Harry Potter and the Half-Blood Prince");
-		list.add("The Lord of the Rings: The Two Towers");
-		list.add("Shrek 2");
-		list.add("Harry Potter and the Goblet of Fire");
-		list.add("Spider-Man 3");
-		list.add("Ice Age: Dawn of the Dinosaurs");
-		list.add("Harry Potter and the Chamber of Secrets");
-		list.add("The Lord of the Rings: The Fellowship of the Ring");
-		list.add("Finding Nemo");
-		list.add("Star Wars: Episode III - Revenge of the Sith");
-		list.add("Transformers: Revenge of the Fallen");
-		list.add("Spider-Man");
-		list.add("Shrek the Third");
-		return list;
-	}
+
 }
