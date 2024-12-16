@@ -20,8 +20,8 @@ public class MainWheel {
 		
 		JFrame frame = new JFrame();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-		ArrayList<String> list = ContentReader.importListOfItems();
+		//list succsesfully created
+		ArrayList<String> list = importListOfItems();
 		SelectionWheel wheel = new SelectionWheel(list);
 		wheel.hasBorders(true);
 		wheel.setBounds(10, 10, 700, 700);
@@ -86,6 +86,16 @@ public class MainWheel {
 			// shows the final selection in a dialog box
 			JOptionPane.showMessageDialog(frame, "Selection: " + wheel.getSelectedString());
 		}
+	}
+
+	private static ArrayList<String> importListOfItems() {
+		ArrayList<String> list = getStrings();
+		return list;
+	}
+
+	private static ArrayList<String> getStrings() {
+		ArrayList<String> list = ContentReader.importListOfItems();
+		return list;
 	}
 
 
