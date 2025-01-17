@@ -73,7 +73,7 @@ public class SelectionWheel extends JPanel {
 		return _wheel.getListOfStrings();
 	}
 
-	public void setListOfStrings(ArrayList<String> list) throws Exception {
+	public void setListOfStrings(ArrayList<String> list)  {
 		/*
 		 * Set the list of strings for the wheel.
 		 */
@@ -105,7 +105,7 @@ public class SelectionWheel extends JPanel {
 		return _wheel.getSpinDeceleration();
 	}
 
-	public void setSpinDeceleration(double deceleration) throws Exception {
+	public void setSpinDeceleration(double deceleration) {
 		_wheel.setSpinDeceleration(deceleration);
 	}
 
@@ -194,7 +194,7 @@ public class SelectionWheel extends JPanel {
 		_tick.setPolygon(polygon);
 	}
 
-	public SelectionWheel(ArrayList<String> listOfStrings) throws Exception {
+	public SelectionWheel(ArrayList<String> listOfStrings)  {
 		/*
 		 * Constructor - initializes tick and wheel.
 		 */
@@ -207,7 +207,7 @@ public class SelectionWheel extends JPanel {
 		this.add(_tick);
 	}
 
-	public void spinStartAsync(double speed, int direction, double deceleration) throws Exception {
+	public void spinStartAsync(double speed, int direction, double deceleration)  {
 		/*
 		 * Start async wheel spin.
 		 */

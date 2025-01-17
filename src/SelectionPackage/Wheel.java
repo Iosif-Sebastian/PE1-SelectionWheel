@@ -141,14 +141,14 @@ public class Wheel extends JPanel {
 		return _stringList;
 	}
 	
-	public void setListOfStrings(ArrayList<String> list) throws Exception {
+	public void setListOfStrings(ArrayList<String> list) {
 		/*
 		 * Set list of strings displayed inside the sections of the wheel.
 		 * The initial list is set in constructor method and can be changed during runtime.
 		 */
 		_noElem = list.size();
 		if(_noElem > LIMIT)
-			throw new Exception("String list is larger then limit (" + LIMIT + ")");
+			throw new IllegalArgumentException("String list is larger then limit (" + LIMIT + ")");
 		_delta = (double)360 / (double)_noElem;
 		_stringList = list;
 		_image = null;
@@ -205,9 +205,8 @@ public class Wheel extends JPanel {
 		return _spinDeceleration;
 	}
 	
-	public void setSpinDeceleration(double deceleration) throws Exception {
-		if(deceleration > 0)
-			throw new Exception("Illegal parameter value: acceleration must be < 0");
+	public void setSpinDeceleration(double deceleration) {
+		assert (deceleration < 0) : "Parameter value for acceleration must be < 0";
 		_spinDeceleration = deceleration;
 	}
 	
@@ -229,7 +228,7 @@ public class Wheel extends JPanel {
 		return _stringList.get((int)Math.floor(_noElem + (_rotationAngle % 360) / _delta) % _noElem);
 	}
 	
-	public Wheel(ArrayList<String> listOfStrings) throws Exception {
+	public Wheel(ArrayList<String> listOfStrings)  {
 		/*
 		 * Constructor of the class.
 		 * Sets the string arraylist, adds mouse listeners and stast TimerTask to measure the rotation speed.
@@ -258,11 +257,6 @@ public class Wheel extends JPanel {
 				_rotationAngleEnd = _rotationAngle;
 				double initialSpeed = 1000 * (_rotationAngleEnd - _rotationAngleStart) / (_timeEnd - _timeStart);
 				initialSpeed = (int)Math.signum(initialSpeed) * Math.min(Math.abs(initialSpeed), _maxSpinSpeed);
-				try {
-					spinStartAsync(Math.abs(initialSpeed), (int)Math.signum(initialSpeed), _spinDeceleration);
-				} catch (Exception e1) {
-					e1.printStackTrace();
-				}
 			}
 		});
 		
@@ -511,7 +505,7 @@ public class Wheel extends JPanel {
 		}
 	}
 	
-	public void spinStartAsync(double speed, int direction, double deceleration) throws Exception
+	public void spinStartAsync(double speed, int direction, double deceleration)
 	{
 		/*
 		 * Method that starts the spinning thread.
@@ -520,12 +514,11 @@ public class Wheel extends JPanel {
 		 * direction => "< 0" = clockwise , "> 0" = counter-clockwise, "=0" = stand still
 		 * deceleration => "< 0" = degrees per second per second reducing speed, "= 0" = perpetual spin, "> 0" = throw exception
 		 */
-		
-		if(deceleration > 0)
-			throw new Exception("Illegal parameter value: acceleration must be < 0");
-		SpinRunnable spinRunnable = new SpinRunnable(speed, direction, deceleration);
+
+		assert deceleration <= 0 : "Illegal parameter value: deceleration must be <= 0";		SpinRunnable spinRunnable = new SpinRunnable(speed, direction, deceleration);
 		Thread t = new Thread(spinRunnable);
 		t.start();
+
 	}
 	
 	public void spinStop()

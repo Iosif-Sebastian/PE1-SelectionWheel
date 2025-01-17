@@ -14,7 +14,7 @@ public class MainWheel {
 	 * The main method is the starting point of the SelectionWheel application
 	 * It orchestrates the setup, execution, and display of the selected wheel.
 	 */
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args)  {
 		
 		int width = 1000, height = 1000;
 		
